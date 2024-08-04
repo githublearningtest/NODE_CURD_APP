@@ -1,8 +1,2 @@
 [build]
-  command = "npm run build"  # Command to build your project (if applicable)
-  publish = "public"         # Directory to publish (change to your build output directory)
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+    functions = "server.js"
