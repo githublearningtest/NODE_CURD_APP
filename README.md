@@ -1,0 +1,1 @@
+# NODE_CURD_APP
