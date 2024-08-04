@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Items</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Items</h1>
+    <form action="/items/add" method="POST" enctype="multipart/form-data" class="item-form">
+      <input type="text" name="name" placeholder="Item Name" required>
+      <input type="text" name="description" placeholder="Item Description">
+      <input type="file" name="file">
+      <button type="submit">Add Item</button>
+    </form>
+    <ul>
+      <% items.forEach(item => { %>
+        <li>
+          <form action="/items/update/<%= item._id %>" method="POST" enctype="multipart/form-data" class="item-form">
+            <input type="text" name="name" value="<%= item.name %>" required>
+            <input type="text" name="description" value="<%= item.description %>">
+            <input type="hidden" name="currentFile" value="<%= item.file %>">
+            <input type="file" name="file">
+            <button type="submit">Update</button>
+          </form>
+          <form action="/items/delete/<%= item._id %>" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+          <% if (item.file) { %>
+            <p>Uploaded file: <a href="<%= item.file %>" target="_blank">View file</a></p>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+    <a href="/auth/logout">Logout</a>
+  </div>
+</body>
+</html>
